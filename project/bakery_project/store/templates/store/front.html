@@ -1,0 +1,63 @@
+{% extends 'store/layout.html' %}
+{% load static %} 
+
+{% block title %}Sweet Bites Bakery{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h2>100% Natural Homemade Fresh Cookies</h2>
+    <a href="" class="btn-link">Shop Now</a>
+  </div>
+</section>
+
+<section class="best-sellers">
+  <h2>Best Sellers</h2>
+  <div class="items">
+    <div class="item">
+      <img src="{% static 'images/white cupcake.jpg' %}" alt="Cupcake" width="150">
+      <p>White Chocolate Bites</p>
+      <p class="price">Rs.120</p>
+    </div>
+    <div class="item">
+      <img src="{% static 'images/Oatmeal Cookies.jpeg' %}" alt="Cookie" width="150">
+      <p>Oatmeal Bites</p>
+      <p class="price">Rs.70</p>
+    </div>
+    <div class="item new">
+      <img src="{% static 'images/Jam Cookies.jpg.jpeg' %}" alt="Jam Cookie" width="150">
+      <p>Jam & Poppy Seed Bites</p>
+      <p class="price">Rs.55</p>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <h2>Follow Me for More Bites</h2>
+  <div class="grid">
+    <img src="{% static 'images/Chocolate Covered Dates.jpg' %}" alt="Chocolate Nuts">
+    <img src="{% static 'images/Cheesecake.jpg' %}" alt="Cheese Cake">
+    <img src="{% static 'images/Strawberry Macaron Shells.jpg' %}" alt="Macarons">
+    <img src="{% static 'images/cookies.jpg' %}" alt="Cookies">
+    <img src="{% static 'images/Blueberry mini Pie.jpg' %}" alt="Mini Pies">
+    <img src="{% static 'images/Croissant.jpg' %}" alt="Croissants">
+  </div>
+</section>
+
+<section class="services">
+  <div class="service">
+    <h3>New Pick Up Service</h3>
+    <p>Grab it fresh.</p>
+  </div>
+  <div class="extra-services">
+    <div class="service">
+      <h3>Free Delivery</h3>
+      <p>Delivered to your door.</p>
+    </div>
+    <div class="service">
+      <h3>Special Gift Wraps</h3>
+      <p>Send a sweet surprise.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

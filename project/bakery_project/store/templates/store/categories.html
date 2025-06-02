@@ -1,0 +1,40 @@
+{% extends 'store/layout.html' %}
+{% load static %}
+
+{% block title %}Categories - Sweet Bites Bakery{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h2>Choose Your Favorite Bakery Items</h2>
+</section>
+
+<section class="categories">
+  {% for product in products %}
+  <div class="category">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <p>{{ product.name }}</p>
+    <p class="price">Rs.{{ product.price }}</p>
+    <button onclick="addToCart('{{ product.name }}')">Add to Cart</button>
+  </div>
+  {% empty %}
+  <p>No products available right now. We're probably still baking! 🧁</p>
+  {% endfor %}
+</section>
+
+<script>
+  function addToCart(item) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(item);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+    alert(item + " added to cart! 🛒");
+  }
+
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+  }
+
+  updateCartCount();
+</script>
+{% endblock %}

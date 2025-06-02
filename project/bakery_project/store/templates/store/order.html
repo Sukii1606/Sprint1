@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Place Your Order</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #99582a, #FFF5E1, #D9A066);
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+      margin: 0;
+    }
+
+    .main-container {
+      background-color: #fffaf0;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .navbar {
+      background: rgba(255, 239, 213, 0.9);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #8B4513;
+      font-weight: bold;
+    }
+
+    h2 {
+      text-align: center;
+      color: #8B4513;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #e0c097;
+      padding: 10px;
+      text-align: center;
+      color: #5a3d1f;
+    }
+
+    th {
+      background-color: #fcebd4;
+    }
+
+    #total {
+      margin-top: 20px;
+      text-align: right;
+      font-weight: bold;
+      color: #8B4513;
+    }
+
+    button {
+      background: #D9A066;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      float: right;
+    }
+
+    button:hover {
+      background-color: #C48744;
+    }
+
+    footer {
+      margin-top: 60px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <div class="navbar">
+        <h1>Sweet Bites Bakery</h1>
+        <nav>
+          <a href="front.html">Home</a> |
+          <a href="categories.html">Categories</a> |
+          <a href="order.html">Order</a> |
+          <a href="cart.html">Cart</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h2>Your Order</h2>
+      <table id="order-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled by JS -->
+        </tbody>
+      </table>
+
+      <div id="total">Total Items: 0</div>
+      <button onclick="placeOrder()">Place Order</button>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Sweet Bites Bakery. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function loadOrder() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let itemMap = {};
+
+      // Count quantities
+      cart.forEach(item => {
+        itemMap[item] = (itemMap[item] || 0) + 1;
+      });
+
+      let tbody = document.querySelector("#order-table tbody");
+      tbody.innerHTML = "";
+
+      let totalItems = 0;
+
+      for (let item in itemMap) {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${item}</td>
+          <td>${itemMap[item]}</td>
+        `;
+        totalItems += itemMap[item];
+        tbody.appendChild(row);
+      }
+
+      document.getElementById("total").textContent = `Total Items: ${totalItems}`;
+    }
+
+    function placeOrder() {
+      if (confirm("Place this delicious order? 🍰")) {
+        localStorage.removeItem("cart");
+        alert("Thank you! Your order has been placed. 🧁");
+        window.location.href = "front.html";
+      }
+    }
+
+    loadOrder();
+  </script>
+</body>
+</html>

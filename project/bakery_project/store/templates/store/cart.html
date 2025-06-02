@@ -1,0 +1,21 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+<div class="cart-container">
+    <h2>Your Cart</h2>
+
+    {% if cart_items %}
+        <ul class="cart-list">
+            {% for item in cart_items %}
+                <li>
+                    <strong>{{ item.name }}</strong> — {{ item.quantity }} × ${{ item.price|floatformat:2 }} = ${{ item.total|floatformat:2 }}
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Total: ${{ total_price|floatformat:2 }}</p>
+        <a href="{% url 'checkout' %}" class="btn">Proceed to Checkout</a>
+    {% else %}
+        <p>Your cart is emptier than a bakery at 4am 🍩</p>
+    {% endif %}
+</div>
+{% endblock %}

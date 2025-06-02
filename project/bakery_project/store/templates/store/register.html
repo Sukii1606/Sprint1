@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account - Sweet Bites Bakery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #FDE2E4, #FFF5E1, #D9A066);
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background: #FFF5E1;
+            padding: 40px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .register-container h2 {
+            color: #8B4513;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #D9A066;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .register-container button {
+            background: #D9A066;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        .register-container button:hover {
+            background: #8B4513;
+        }
+        .login-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .login-link a {
+            color: #8B4513;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create an Account</h2>
+        <form action="register.php" method="POST">
+    <input type="text" name="full_name" placeholder="Full Name" required>
+    <input type="email" name="email" placeholder="Email Address" required>
+    <input type="password" name="password" placeholder="Password" required>
+    <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+    <input type="text" name="address" placeholder="Delivery Address" required>
+    <input type="tel" name="phone" placeholder="Phone Number" required>
+    <button type="submit">Register</button>
+</form>
+        <div class="login-link">
+            <p>Already have an account? <a href="login.html">Login here</a></p>
+        </div>
+    </div>
+
+    <script>
+        function handleRegister(e) {
+            e.preventDefault();
+            const password = e.target.password.value;
+            const confirmPassword = e.target.confirm_password.value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match. Please try again.");
+                return;
+            }
+
+            // Assuming successful registration, redirect to home page
+            window.location.href = "home.html";
+        }
+    </script>
+</body>
+</html>
